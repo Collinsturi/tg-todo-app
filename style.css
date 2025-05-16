@@ -72,7 +72,7 @@ main {
 .title h2 {
   font-size: 2.5rem;
   letter-spacing: 0.3rem;
-  color: var(--bright-blue);
+  color: var(--light-very-light-gray);
 }
 
 .title img {
@@ -144,6 +144,12 @@ main {
   transform: rotate(45deg);
 }
 
+#todo-list li label {
+  color: var(--dark-light-grayish-blue);
+  font-size: 1rem;
+  font-weight: 100;
+}
+
 /* Bottom Menu */
 #todo-list-container-bottom-menu {
   display: flex;
@@ -174,4 +180,51 @@ main {
 #bottom-info h4 {
   font-size: 0.8rem;
   color: var(--dark-very-dark-grayish-blue-2);
+}
+
+.todo-list-container-top {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  transition: background-color 0.3s ease;
+  background-color: var(--dark-very-dark-desaturated-blue);
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  margin-bottom: 2rem;
+}
+
+.todo-list-container-top:hover {
+  background-color: var(--dark-very-dark-grayish-blue-2);
+  cursor: pointer;
+}
+
+.todo-list-container-top input[type="checkbox"] {
+  width: 1.2rem;
+  height: 1.2rem;
+  margin-right: 1rem;
+  appearance: none;
+  border: 2px solid var(--dark-light-grayish-blue);
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  outline: none;
+  transition: background 0.3s ease;
+}
+
+.todo-list-container-top input[type="checkbox"]:checked {
+  background: var(--check-background);
+  border: none;
+}
+
+.todo-list-container-top input[type="checkbox"]:checked::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 5px;
+  width: 4px;
+  height: 9px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
 }
