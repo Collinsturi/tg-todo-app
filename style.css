@@ -132,4 +132,5 @@ main {
 }
 #bottom-info h4 {
   font-size: 0.8rem;
+  color: var(--dark-very-dark-grayish-blue-2);
 }
