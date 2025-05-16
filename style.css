@@ -38,7 +38,7 @@ body {
   width: 100%;
   transition: background-color 0.3s ease;
   background-image: url("./images/bg-desktop-dark.jpg");
-  background-size: 100% auto;
+  background-size: 100% 250px;
   background-repeat: no-repeat;
   background-color: black;
 }
@@ -241,4 +241,48 @@ main {
 
 .todo-list-container-top input[type="text"]:focus {
   outline: none;
+}
+
+/* Responsive Styles */
+
+/* Screen sizes < 1000px */
+@media (max-width: 1000px) {
+  body {
+    padding: 0 2rem;
+    background-size: 100% 250px;
+  }
+
+  .title h2 {
+    font-size: 2.5rem;
+    letter-spacing: 0.3rem;
+  }
+
+  .todo-list-container-top input[type="text"] {
+    font-size: 1rem;
+  }
+
+  #todo-list-container-bottom-menu {
+    font-size: 0.9rem;
+  }
+}
+
+/* Screen sizes < 500px */
+@media (max-width: 500px) {
+  body {
+    padding: 0 1rem;
+    background-size: 100% 240px;
+  }
+
+  .title h2 {
+    font-size: 2rem;
+    letter-spacing: 0.2rem;
+  }
+
+  .todo-list-container-top input[type="text"] {
+    font-size: 0.9rem;
+  }
+
+  #todo-list-container-bottom-menu {
+    font-size: 0.8rem;
+  }
 }
