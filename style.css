@@ -37,7 +37,6 @@ body {
   min-height: 100vh;
   width: 100%;
   transition: background-color 0.3s ease;
-  background-image: url("./images/bg-desktop-dark.jpg");
   background-size: 100% 250px;
   background-repeat: no-repeat;
   background-color: black;
@@ -46,11 +45,13 @@ body {
 body[data-theme="dark"] {
   background-color: var(--dark-very-dark-blue);
   color: var(--dark-light-grayish-blue);
+  background-image: url("./images/bg-desktop-dark.jpg");
 }
 
 body[data-theme="light"] {
   background-color: var(--light-very-light-gray);
   color: var(--light-very-dark-grayish-blue);
+  background-image: url("./images/bg-desktop-light.jpg");
 }
 
 main {
@@ -171,6 +172,11 @@ main {
   color: var(--bright-blue);
 }
 
+#todo-list-container-bottom-menu-middle a.active {
+  color: hsl(220, 98%, 61%); /* Light blue */
+  font-weight: bold;
+}
+
 /* Bottom Info */
 #bottom-info {
   display: flex;
@@ -283,6 +289,14 @@ main {
   }
 
   #todo-list-container-bottom-menu {
+    display: flex;
     font-size: 0.8rem;
+    justify-content: space-around;
+  }
+
+  /* Hide Items Left and Clear Completed */
+  #todo-list-container-bottom-menu-left,
+  #todo-list-container-bottom-menu-right {
+    display: none;
   }
 }
