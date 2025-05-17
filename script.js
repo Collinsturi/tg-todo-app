@@ -52,28 +52,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let filtered = todos;
     if (filter === "active") filtered = todos.filter((t) => !t.completed);
-    else if (filter === "completed")
-      filtered = todos.filter((t) => t.completed);
+    if (filter === "completed") filtered = todos.filter((t) => t.completed);
 
-    filtered.forEach((todo, index) => {
+    filtered.forEach((todo) => {
+      // Find its real index in the master todos[]
+      const realIndex = todos.indexOf(todo);
+
       const li = document.createElement("li");
       li.setAttribute("draggable", "true");
-      li.dataset.index = index;
+      li.dataset.realIndex = realIndex; // ← store real index
+      li.classList.toggle("completed", todo.completed);
 
       const checkbox = document.createElement("input");
       checkbox.type = "checkbox";
       checkbox.checked = todo.completed;
       checkbox.addEventListener("change", () => {
-        todos[index].completed = checkbox.checked;
+        todos[realIndex].completed = checkbox.checked;
         renderTodos(currentFilter);
       });
 
       const label = document.createElement("label");
       label.textContent = todo.text;
-      if (todo.completed) label.style.textDecoration = "line-through";
 
-      li.appendChild(checkbox);
-      li.appendChild(label);
+      li.append(checkbox, label);
       todoList.appendChild(li);
     });
 
@@ -110,25 +111,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Drag and Drop
   function enableDragAndDrop() {
-    let draggedIndex;
+    let draggedRealIndex;
 
-    todoList.querySelectorAll("li").forEach((li, index) => {
+    todoList.querySelectorAll("li").forEach((li) => {
       li.addEventListener("dragstart", () => {
-        draggedIndex = index;
+        draggedRealIndex = +li.dataset.realIndex;
         li.classList.add("dragging");
       });
-
       li.addEventListener("dragend", () => {
         li.classList.remove("dragging");
       });
-
       li.addEventListener("dragover", (e) => {
         e.preventDefault();
-        const draggingOver = [...todoList.children].indexOf(li);
-        if (draggedIndex !== draggingOver) {
-          const draggedItem = todos[draggedIndex];
-          todos.splice(draggedIndex, 1);
-          todos.splice(draggingOver, 0, draggedItem);
+        const overLi = e.currentTarget;
+        const overRealIndex = +overLi.dataset.realIndex;
+
+        if (draggedRealIndex !== overRealIndex) {
+          // Remove the dragged item...
+          const [moved] = todos.splice(draggedRealIndex, 1);
+          // Insert it before the item we’re hovering over
+          todos.splice(overRealIndex, 0, moved);
           renderTodos(currentFilter);
         }
       });

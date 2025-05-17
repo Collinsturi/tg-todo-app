@@ -39,7 +39,6 @@ body {
   transition: background-color 0.3s ease;
   background-size: 100% 250px;
   background-repeat: no-repeat;
-  background-color: black;
 }
 
 body[data-theme="dark"] {
@@ -269,6 +268,21 @@ main {
 
   #todo-list-container-bottom-menu {
     font-size: 0.9rem;
+  }
+}
+
+/* Screen Sizes < 650px */
+@media (max-width: 650px) {
+  #todo-list-container-bottom-menu {
+    display: flex;
+    font-size: 0.8rem;
+    justify-content: space-around;
+  }
+
+  /* Hide Items Left and Clear Completed */
+  #todo-list-container-bottom-menu-left,
+  #todo-list-container-bottom-menu-right {
+    display: none;
   }
 }
 
